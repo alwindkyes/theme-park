@@ -1,1 +1,130 @@
-<p>booking works!</p>
+<header class="bg-indigo-700">
+    <h1 class="container mx-auto text-white text-2xl py-3">Wonderla Ticket</h1>
+</header>
+<div *ngIf="toaster" class="bg-red-500 fixed shadow-2xl right-5 top-5 z-10 text-center py-3 px-10 text-white rounded">{{
+    toasterMessage }}</div>
+<section class="container mx-auto mt-10">
+    <div class="flex text-2xl text-gray-700 justify-between">
+        <div>
+            <h1>Where Do You Want To Visit?</h1>
+            <div class="flex row gap-5 my-5">
+                <button (click)="onSelectedCity(park.city)"
+                    class="{{ park.city === commonService.selectedCity  ? 'bg-yellow-200 -my-2' : 'bg-yellow-50' }} text-lg text-indigo-900 p-2 border-2 rounded w-48 font-bold border-yellow-400 flex items-center justify-center gap-4 hover:-my-2 duration-100"
+                    *ngFor="let park of parks">
+                    <img src="{{ park.city_icon }}" class="w-6 h-6" alt="">
+                    <span>{{ park.city }}</span>
+                </button>
+            </div>
+        </div>
+        <div class="flex flex-col">
+            <h1>Check-in with Mobile (Optional)</h1>
+            <div class="border my-auto border-yellow-400 flex justify-between rounded p-1">
+                <select name="" id="" class="bg-white focus:outline-none text-xl pl-5">
+                    <option value="">+91</option>
+                    <option value="">+971</option>
+                </select>
+                <input type="text" class="focus:outline-none">
+                <button
+                    class="bg-yellow-200 text-lg text-indigo-900 py-2 px-10 border-2 rounded font-bold border-yellow-400">Get
+                    OTP</button>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container mx-auto mt-10">
+    <h1 class="text-2xl text-gray-700">When Do You Want To Visit?</h1>
+    <p class="text-xl mt-2 text-gray-600">Select the Date of Visit</p>
+    <div class="border border-2 border-indigo-200 mt-5 rounded-xl">
+        <div class="flex items-center border-b-2 border-indigo-200 justify-between p-4">
+            <div>
+                <div class="flex items-center gap-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6 text-indigo-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6 text-indigo-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                    <p class="text-xl text-gray-600 font-bold">
+                        <span>{{ newDate.getMonth() }}</span>
+                        <span> {{ newDate.getFullYear() }}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="flex items-center gap-5">
+                <div class="flex items-center">
+                    <div class="rounded-full bg-green-500 h-3 w-3"></div>
+                    <p class="mx-2 text-gray-600"> Available</p>
+                </div>
+                <div class="flex items-center">
+                    <div class="rounded-full bg-red-500 h-3 w-3"></div>
+                    <p class="mx-2 text-gray-600">Sold Out</p>
+                </div>
+                <div class="flex items-center">
+                    <div class="rounded-full bg-orange-500 h-3 w-3"></div>
+                    <p class="mx-2 text-gray-600">Fast Filling</p>
+                </div>
+                <div class="flex items-center">
+                    <div class="rounded-full bg-blue-500 h-3 w-3"></div>
+                    <p class="mx-2 text-gray-600">Special Offers</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-row justify-around px-4">
+            <button (click)="onSelectedDate(calendar)"
+                class="hover:shadow-xl m-5 rounded duration-75 px-5
+                {{ calendar.date === currentDate ? 'border-b-4 border-red-500' : 'border-b-4 border-sky-400' }}
+                {{ commonService.selectedDate === calendar.date ? 'shadow-2xl duration-75 border-t-4 border-lime-500 border-b-0' : '' }}"
+                *ngFor="let calendar of calendarArray | slice: 0 : 8;">
+                <p class="text-gray-500 font-semibold">{{ calendar.day | slice: 0 : 3 }}</p>
+                <h1 class="text-2xl font-bold text-gray-600 text-center">{{ calendar.date | date:'d' }}
+                </h1>
+                <p class="text-xs" *ngIf="calendar.date === currentDate">Today</p>
+            </button>
+            <input type="date" (input)="onDatepicker()" [formControl]="date" name="date"
+                class="focus: outline-none datepicker">
+        </div>
+    </div>
+</section>
+<section class="container mx-auto mt-10">
+    <h1 class="text-2xl text-gray-700">Number of Persons</h1>
+    <p class="text-xl mt-2 text-gray-600">How many People are Visiting?</p>
+    <div class="flex flex-wrap gap-x-24 gap-y-8 items-center mt-5">
+        <div *ngFor="let ticket of commonService.tickets" class="w-1/5 border-2 rounded-xl p-4 hover:shadow-2xl duration-500">
+            <div class="relative">
+                <img src="{{ ticket.ticket_image }}" class="object-cover rounded-lg" alt="">
+                <div class="absolute bottom-5 left-5 text-4xl text-white font-extrabold 
+                {{ ticket.type === 'FASTTRACK' ? 'block' : 'hidden' }}">
+                    FAST TRACK</div>
+            </div>
+            <h2 class="mt-5 font-bold text-gray-700">{{ ticket.ticket_title }}</h2>
+            <div class="flex justify-between items-end">
+                <p class="mt-5">₹{{ ticket.price }} <span class="text-gray-600"> Per Ticket</span></p>
+                <div class="flex border border-orange-400 rounded p-1">
+                    <button (click)="decreaseTicket(ticket)" class="p-1 bg-orange-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 text-orange-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                        </svg>
+                    </button>
+                    <input type="text" readonly class="w-10 text-center focus:outline-none px-2 text-gray-800"
+                        [formControl]="ticket.control">
+                    <button (click)="increaseTicket(ticket)" class="p-1 bg-orange-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 text-orange-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="w-full mt-10 border-2 border-white border-y-indigo-200 p-5">
+    <div class="container mx-auto text-right">
+        <button (click)="toBilling()"
+            class="bg-yellow-200 text-lg text-indigo-900 py-2 px-10 border-2 rounded font-bold border-yellow-400">Book
+            Now</button>
+    </div>
+</footer>

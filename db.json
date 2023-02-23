@@ -1,0 +1,9 @@
+{
+    "wrestlers": [
+        {
+            "id": 1,
+            "name": "Grayson Waller",
+            "brand": "NXT"
+        }
+    ]
+}

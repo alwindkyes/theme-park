@@ -1,0 +1,6 @@
+<router-outlet></router-outlet>
+<section class="container mx-auto mt-5">
+    <input type="text" class="focus:outline-none border border-sky-500 p-2" (keyup)="changeKey($event)">
+    <button class="bg-cyan-500 p-2 text-white rounded ml-5 mb-5" (click)="changeBrand()">Change</button>
+    <app-test [nameList]="nameList"></app-test>
+</section>

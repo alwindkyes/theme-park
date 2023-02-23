@@ -1,1 +1,91 @@
-<p>billing works!</p>
+<section class="p-10 bg-violet-100 h-auto">
+    <div *ngIf="couponMessage"
+        class="bg-red-500 fixed shadow-2xl right-5 top-5 z-10 text-center py-3 px-10 text-white rounded">{{
+        couponMessage }}</div>
+    <div class="container mx-auto">
+        <div class="flex justify-center border rounded-2xl gap-5">
+            <div class="flex w-1/2 shadow-lg bg-white p-10 rounded-xl">
+                <div class="my-auto w-full flex justify-between border rounded-md">
+                    <input type="text" class="w-full focus:outline-none pl-5 text-gray-700" placeholder="Apply Coupon"
+                        [formControl]="coupon">
+                    <button (click)="applyCoupon()"
+                        class="px-10 shadow-lg text-md rounded text-white hover:text-yellow-300 bg-indigo-600 py-3 m-1">Apply</button>
+                </div>
+            </div>
+            <div class="border-orange-300 shadow-lg p-10 w-1/2 bg-white rounded-xl flex items-center relative">
+                <input type="text" class="focus:outline-none border text-gray-700 pl-5 w-full py-3 m-1"
+                    placeholder="Enter GST">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6 absolute right-14">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+            </div>
+        </div>
+        <div class="w-full flex justify-between shadow-lg bg-white mt-10 p-10 rounded-2xl">
+            <div class="flex flex-col gap-3">
+                <p class="text-lg font-bold">Visit Location</p>
+                <h2 class="text-lg">Wonderla {{ commonService.selectedCity }}</h2>
+            </div>
+            <div class="flex flex-col gap-3">
+                <p class="text-lg font-bold">Visit Date</p>
+                <h2 class="text-lg">{{ commonService.selectedDate | date:'longDate' }}</h2>
+            </div>
+        </div>
+        <div class="w-full bg-white shadow-lg mt-10 p-10 rounded-2xl">
+            <h1 class="text-2xl mb-3">Ticket Summary</h1>
+            <table class="w-full pb-5 border-b-indigo-300">
+                <thead>
+                    <tr>
+                        <th class="text-left pb-3">Park Booking</th>
+                        <th class="text-right pb-3">₹ {{ totalTicketAmount }}</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let ticket of commonService.tickets">
+                    <tr *ngIf="ticket.control.value">
+                        <td class="text-left pb-3">{{ ticket.control.value }} X {{ ticket.ticket_title }}</td>
+                        <td class="text-right pb-3">₹ {{ ticket.control.value * ticket.price }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="flex justify-between border mt-5 border-white py-5 border-y-indigo-300">
+                <div class="flex flex-col gap-3">
+                    <p class="text-md font-bold">Tax</p>
+                </div>
+                <div class="flex flex-col gap-3 justify-end">
+                    <p class="text-md font-bold">₹ {{ taxAmount }}</p>
+                </div>
+            </div>
+            <div class="flex justify-between border mt-5 border-white pb-5 border-b-indigo-300">
+                <div class="flex gap-3">
+                    <p class="text-md font-bold">Discounted Price</p>
+                    <p class="text-xl text-indigo-500 pl-5" *ngIf="discountAmount">{{ coupon.value }} is Applied !</p>
+                </div>
+                <div class="flex flex-col gap-3 justify-end">
+                    <p class="">₹ - {{ discountAmount }}</p>
+                </div>
+            </div>
+            <div class="flex justify-between mt-5">
+                <div class="flex gap-3">
+                    <p class="text-md font-bold text-2xl">Grand Total</p>
+                </div>
+                <div class="flex flex-col gap-3 justify-end">
+                    <p class="text-md font-bold text-2xl">₹ {{ grandTotalAmount }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-between border shadow-lg items-center bg-white rounded-2xl mt-10 px-10">
+            <img src="https://img.freepik.com/free-vector/full-sack-cash…ent-background-vector-illustration_91128-1956.jpg"
+                alt="" class="object-cover w-32 h-32">
+            <div class="flex flex-col">
+                <h1 class="text-2xl font-bold text-indigo-700">{{ discountAmount }} Total Saving</h1>
+                <p class="text-gray-700 ">with Coupon and Packages</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="w-full border-2 border-white border-y-indigo-200 p-5">
+    <div class="container mx-auto text-right">
+        <button (click)="toBooking()"
+            class="bg-yellow-200 text-lg text-indigo-900 py-2 px-10 border-2 rounded font-bold border-yellow-400">Back</button>
+    </div>
+</footer>

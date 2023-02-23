@@ -1,0 +1,22 @@
+::-webkit-datetime-edit-text {
+    display: none;
+}
+
+::-webkit-datetime-edit-month-field {
+    display: none;
+}
+
+::-webkit-datetime-edit-day-field {
+    display: none;
+}
+
+::-webkit-datetime-edit-year-field {
+    display: none;
+}
+
+::-webkit-calendar-picker-indicator {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBkGGfV0nbuijzYwi0jE8njpCOD2zCkNvn1A&usqp=CAU');
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
