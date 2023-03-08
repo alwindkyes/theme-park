@@ -1,9 +1,52 @@
 {
-    "wrestlers": [
-        {
-            "id": 1,
-            "name": "Grayson Waller",
-            "brand": "NXT"
-        }
-    ]
+  "wrestlers": [
+    {
+      "rank": 1,
+      "wrestler_name": "Bron Breaker",
+      "brand": null,
+      "id": 1
+    },
+    {
+      "rank": 2,
+      "wrestler_name": "Axiom",
+      "brand": null,
+      "id": 2
+    },
+    {
+      "rank": 3,
+      "wrestler_name": "JD McDonagh",
+      "brand": null,
+      "id": 3
+    },
+    {
+      "rank": 4,
+      "wrestler_name": "Jinder Mahal",
+      "brand": null,
+      "id": 4
+    },
+    {
+      "rank": 5,
+      "wrestler_name": "AJ Styles",
+      "brand": null,
+      "id": 5
+    },
+    {
+      "rank": 6,
+      "wrestler_name": "Drew McIntyre",
+      "brand": null,
+      "id": 6
+    },
+    {
+      "rank": 7,
+      "wrestler_name": "Carmelo Hayes",
+      "brand": null,
+      "id": 7
+    },
+    {
+      "rank": 8,
+      "wrestler_name": "Joe Gacy",
+      "brand": null,
+      "id": 8
+    }
+  ]
 }

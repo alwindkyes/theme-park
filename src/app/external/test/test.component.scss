@@ -1,0 +1,44 @@
+::-webkit-file-upload-button {
+  background: white;
+  --tw-border-opacity: 1;
+  color: rgb(20 184 166 / var(--tw-border-opacity));
+  padding: 8px;
+  border: 1px solid rgb(20 184 166 / var(--tw-border-opacity));
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  /* style goes here */
+}
+
+.open-popup {
+  transform: scale(1);
+  animation-name: openpopup;
+  animation-duration: 0.4s;
+}
+
+@keyframes openpopup {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.close-popup {
+  background-color: teal;
+  transform: scale(0);
+  animation-name: closepopup;
+  animation-duration: 0.4s;
+}
+
+@keyframes closepopup {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0);
+  }
+}
