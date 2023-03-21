@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Editor } from 'ngx-editor';
 import { toDoc } from 'ngx-editor';
+import { CommonService } from 'src/app/service/common.service';
 
 @Component({
   selector: 'app-create-question',
@@ -10,7 +11,7 @@ import { toDoc } from 'ngx-editor';
   styleUrls: ['./create-question.component.scss']
 })
 export class CreateQuestionComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private commonService: CommonService) { }
 
   editor: Editor = new Editor;
   html: '' = "";

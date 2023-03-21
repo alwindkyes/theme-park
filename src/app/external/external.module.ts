@@ -11,14 +11,21 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { TestComponent } from './test/test.component';
 import { CreateQuestionComponent } from './create-question/create-question.component';
-
+import { PersonOneComponent } from './person-one/person-one.component';
+import { PersonTwoComponent } from './person-two/person-two.component';
+import { ChatCptComponent } from './chat-cpt/chat-cpt.component';
 
 @NgModule({
   declarations: [
     ExternalComponent,
     QuestionBankComponent,
     TestComponent,
-    CreateQuestionComponent
+    CreateQuestionComponent,
+    PersonOneComponent,
+    PersonTwoComponent,
+    ChatCptComponent,
+
+
   ],
   imports: [
     CommonModule,

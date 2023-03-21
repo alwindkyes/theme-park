@@ -1,0 +1,35 @@
+<button class="relative group transition-all duration-500 overflow-clip
+    {{
+        animation === 'Fade' && shade === 'Dark' ? 'hover:bg-emerald-100' : 
+        animation === 'Fade' && shade === 'Light' ? 'hover:bg-emerald-500' : 
+        animation === 'Fade' && shade === 'White' ? 'hover:bg-emerald-500' :
+        ''
+    }}
+    {{ 
+        size === 'Small' ? 'text-lg px-5 py-2 rounded' : 
+        size === 'Medium' ? 'text-xl px-7 py-3 rounded-lg' : 
+        size === 'Large' ? 'text-2xl px-9 py-4 rounded-xl' : 
+        '' 
+    }}
+    {{ 
+        shade === 'Dark' ? 'bg-emerald-500 text-white hover:text-emerald-500 border border-emerald-500' : 
+        shade === 'Light' ? 'bg-emerald-100 text-emerald-500 hover:text-white border border-emerald-100' : 
+        shade === 'White' ? 'bg-white text-emerald-500 border border-emerald-500 hover:text-white' :
+        'hover:text-emerald-500' 
+    }}
+">
+    <span class="z-20 relative">
+        {{
+        size === 'Small' ? 'Small Button' :
+        size === 'Medium' ? 'Medium Button' :
+        size === 'Large' ? 'Large Button' :
+        'Default'
+        }}
+    </span>
+    <span class="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] transition-all duration-1000
+     bg-emerald-500 aspect-square w-[20%] group-hover:w-[200%] rounded-full z-10 opacity-0 group-hover:opacity-100
+     {{
+        shade === 'Dark' ? 'bg-emerald-100' : ''
+     }}">
+    </span>
+</button>

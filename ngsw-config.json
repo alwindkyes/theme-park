@@ -31,7 +31,7 @@
     {
       "name": "wrestlers",
       "urls": [
-        "http://localhost:3000/wrestlers"
+        "https://jsonplaceholder.typicode.com/wrestlers"
       ],
       "cacheConfig": {
         "maxSize": 5,

@@ -4,7 +4,7 @@
         <div class="container mx-auto">
             <p class="text-2xl text-violet-500 font-bold">Test Works!</p>
             <div>
-                <h2>{{ nameList.fullName }}</h2>
+                <h2>{{ nameList.wrestler_name }}</h2>
                 <h2>{{ nameList.brand }}</h2>
             </div>
         </div>
@@ -59,7 +59,7 @@
         </table>
     </section>
 </section>
-<div *ngIf="toasterMessage" class="flex gap-x-5 fixed top-5 right-36 bg-teal-500 py-2 px-5">
+<div *ngIf="toasterMessage" class="flex shadow-lg gap-x-5 fixed top-5 right-36 bg-teal-500 py-2 px-5">
     <h2 class="text-white text-lg">{{ toasterMessage }}</h2>
     <button (click)="closeToaster()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">

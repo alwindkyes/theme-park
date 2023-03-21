@@ -48,5 +48,47 @@
       "brand": null,
       "id": 8
     }
+  ],
+  "chat": [
+    {
+      "chat": "Hello World",
+      "person": 1,
+      "id": 1
+    },
+    {
+      "chat": "Hello Universe",
+      "person": 2,
+      "id": 2
+    },
+    {
+      "chat": "Carmelo Hayes",
+      "person": 1,
+      "id": 3
+    },
+    {
+      "chat": "Andre Chase",
+      "person": 2,
+      "id": 4
+    },
+    {
+      "chat": "Axiom",
+      "person": 1,
+      "id": 5
+    },
+    {
+      "chat": "Tony D'Angelo",
+      "person": 2,
+      "id": 6
+    },
+    {
+      "chat": "Nathan Frazer",
+      "person": 2,
+      "id": 7
+    },
+    {
+      "chat": "Apollo Crews",
+      "person": 1,
+      "id": 8
+    }
   ]
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChatCptComponent } from './chat-cpt/chat-cpt.component';
 import { CreateQuestionComponent } from './create-question/create-question.component';
 import { ExternalComponent } from './external.component';
 import { QuestionBankComponent } from './question-bank/question-bank.component';
@@ -9,10 +10,30 @@ const routes: Routes = [
   {
     path: '', component: ExternalComponent,
     children: [
-      { path: '', redirectTo: 'overview', pathMatch: 'full' },
-      { path: 'question-bank', component: QuestionBankComponent },
-      { path: 'test', component: TestComponent },
-      { path: 'create-question', component: CreateQuestionComponent }
+      {
+        path: '',
+        redirectTo: 'overview',
+        pathMatch: 'full'
+      },
+      {
+        path: 'question-bank',
+        component: QuestionBankComponent,
+        title: 'Question Bank'
+      },
+      {
+        path: 'test',
+        component: TestComponent
+      },
+      {
+        path: 'create-question',
+        component: CreateQuestionComponent,
+        title: 'Create Question'
+      },
+      {
+        path: '',
+        component: ChatCptComponent,
+        title: 'Chat CPT'
+      }
     ]
   }
 ];
