@@ -10,6 +10,7 @@ export class DialogComponent implements OnInit, OnChanges {
 
   @Input() openDialog: boolean = false;
   @Input() youtubeUrl: string = '';
+  @Input() imageUrl: string = '';
   @Input() type: string = '';
   @Input() closeButton: string = '';
   @Output() closeDialog: EventEmitter<string> = new EventEmitter();

@@ -16,6 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { OfficeComponent } from './office/office.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminManageComponent } from './admin-manage/admin-manage.component';
+import { SnackbarComponent } from './shared/snackbar/snackbar.component';
+import { FileUploadComponent } from './shared/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { AdminManageComponent } from './admin-manage/admin-manage.component';
     LoginComponent,
     OfficeComponent,
     AdminComponent,
-    AdminManageComponent
+    AdminManageComponent,
+    SnackbarComponent,
+    FileUploadComponent
   ],
   imports: [
     CommonModule,

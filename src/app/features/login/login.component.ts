@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,12 +9,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  isUser: boolean = false;
+  isUser: boolean = true;
   alertMessage: string = '';
-  signUpPage: boolean = true;
-  userAccounts: any[] = [];
+  userList: any[] = [];
 
-  loginForm: FormGroup = new FormGroup({});
+  signInForm: FormGroup = new FormGroup({});
   signUpForm: FormGroup = new FormGroup({});
 
   constructor(
@@ -28,41 +27,77 @@ export class LoginComponent {
       }
     })
   }
-
   ngOnInit(): void {
     console.log('snapshot', this.activatedRoute.snapshot.data);
-    const userAccounts = localStorage.getItem('userAccounts');
-    this.userAccounts = userAccounts !== null ? JSON.parse(userAccounts) : [];
+
+    const userListSting = localStorage.getItem('signUpData');
+    this.userList = userListSting !== null ? JSON.parse(userListSting) : [];
+
+    this.signInForm = this.formBuilder.group({
+      email: new FormControl('', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]),
+      // password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]),
+      password: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/)]),
+    })
 
     this.signUpForm = this.formBuilder.group({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
-    })
-    this.loginForm = this.formBuilder.group({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
-    })
+      email: new FormControl('', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]),
+      password: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/)]),
+      confirmPassword: new FormControl('', [Validators.required])
+    },
+      {
+        validator: this.passwordMatchValidator
+      })
   }
 
-  handleSubmit(form: any): void {
-    if (form.valid) {
-      if (this.signUpPage) {
-        this.userAccounts.push(form.value)
-        localStorage.setItem('userAccounts', JSON.stringify(this.userAccounts));
-        // this.router.navigateByUrl('/office');
+  passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    if (control.get('password')?.value !== control.get('confirmPassword')?.value) {
+      console.log("control", control);
+      return { invalid: true };
+    }
+    return null;
+  }
+
+  signIn(signInForm: FormGroup): void {
+    // console.log('signInForm', signInForm);
+    if (signInForm.valid) {
+      const isUser = this.userList.some(element => {
+        return element.email === signInForm.value.email && element.password === signInForm.value.password;
+      });
+      if (isUser) {
+        this.alertMessage = 'Sign In Successfully';
+        this.router.navigateByUrl('office');
+        signInForm.reset();
       } else {
-        console.log('login', form.value);
-        
+        this.alertMessage = 'Invalid email or password';
       }
+    } else {
+      this.alertMessage = 'Please fill in all required fields correctly';
+      signInForm.markAllAsTouched();
     }
-    else {
-      if (!this.alertMessage) {
-        this.alertMessage = 'You are Totally Wrong !';
-        setTimeout(() => {
-          this.alertMessage = '';
-        }, 2000);
+  }
+
+  signUp(signUpForm: FormGroup): void {
+    if (signUpForm.valid) {
+      // console.log('signInForm', signUpForm.value);
+      if (this.userList.length) {
+        const userExists = this.userList.some(element => {
+          return element.email === signUpForm.value.email;
+        });
+        if (userExists) {
+          this.alertMessage = 'User already exists';
+          return;
+        }
+        this.userList.push(signUpForm.value);
+      } else {
+        this.userList.push(signUpForm.value);
       }
+      localStorage.setItem('signUpData', JSON.stringify(this.userList));
+      this.alertMessage = 'Sign-up successful!';
+      this.router.navigateByUrl('office');
+      signUpForm.reset();
+    } else {
+      this.alertMessage = 'Please fill in all required fields correctly';
+      signUpForm.markAllAsTouched();
     }
-    form.reset();
   }
 }
