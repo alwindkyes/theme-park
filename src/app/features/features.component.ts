@@ -1,16 +1,25 @@
-import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  ElementRef,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { DynamicComponent } from './dynamic/dynamic.component';
 import { StandAndDeliverComponent } from './stand-and-deliver/stand-and-deliver.component';
+// import { Chart } from 'chart.js';
+// Chart.register(...registerables);
 
 @Component({
   selector: 'app-features',
   templateUrl: './features.component.html',
-  styleUrls: ['./features.component.scss']
+  styleUrls: ['./features.component.scss'],
 })
 export class FeaturesComponent {
   starCount: number = 4.7;
 
-  imageSrc: string = 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80';
+  imageSrc: string =
+    'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80';
   radius: string = 'md';
   objectFit: string = '';
   roundingSide: string = 'top';
@@ -24,27 +33,51 @@ export class FeaturesComponent {
   closeButton: string = 'text';
   youtubeUrl: string = 'https://www.youtube.com/embed/x55lAlFtXmw';
 
-  @ViewChild('container', { read: ViewContainerRef }) container!: ViewContainerRef;
+  @ViewChild('container', { read: ViewContainerRef })
+  container!: ViewContainerRef;
+  @ViewChild('video') video!: ElementRef;
 
-  constructor(private viewContainerRef: ViewContainerRef) {
+  constructor(private viewContainerRef: ViewContainerRef) {}
 
+  ngAfterViewInit() {
+    // this.video.nativeElement.currentTime = 55;
+  }
+
+  ngOnInit(): void {
+    
   }
 
   addDynamicComponents() {
     this.container.clear();
     const dynamicRef = this.container.createComponent(DynamicComponent);
     // dynamicRef.instance.value = 'Nathan Frazer';
-    dynamicRef.setInput('value', 'Axiom')
+    dynamicRef.setInput('value', 'Axiom');
 
-    const standAndDeliverRef = this.container.createComponent(StandAndDeliverComponent);
+    const standAndDeliverRef = this.container.createComponent(
+      StandAndDeliverComponent
+    );
     standAndDeliverRef.instance.brand = 'NXT';
   }
 
   openDialogBox(type: string): void {
-    type === 'regular' ? this.regularDialog = true : this.videoDialog = true;
+    type === 'regular'
+      ? (this.regularDialog = true)
+      : (this.videoDialog = true);
   }
 
-  closeDialogBox(type: string): void {    
-    type === 'regular' ? this.regularDialog = false : this.videoDialog = false;
+  closeDialogBox(type: string): void {
+    type === 'regular'
+      ? (this.regularDialog = false)
+      : (this.videoDialog = false);
+  }
+
+  isEnabled: boolean = false;
+  size: number = 170;
+  checkChanges(event: any): void {
+    console.log('event', event.target.checked);
+  }
+
+  videoFuntion(event: any): void {
+    console.log('event', event);
   }
 }

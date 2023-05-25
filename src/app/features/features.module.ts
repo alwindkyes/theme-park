@@ -12,12 +12,13 @@ import { OptimizedImageComponent } from './optimized-image/optimized-image.compo
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { CalendarComponent } from './shared/calendar/calendar.component';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OfficeComponent } from './office/office.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminManageComponent } from './admin-manage/admin-manage.component';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { FileUploadComponent } from './shared/file-upload/file-upload.component';
+import { NotchedButtonComponent } from './shared/notched-button/notched-button.component';
 
 @NgModule({
   declarations: [
@@ -35,13 +36,15 @@ import { FileUploadComponent } from './shared/file-upload/file-upload.component'
     AdminComponent,
     AdminManageComponent,
     SnackbarComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    NotchedButtonComponent
   ],
   imports: [
     CommonModule,
     FeaturesRoutingModule,
     NgOptimizedImage,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class FeaturesModule { }

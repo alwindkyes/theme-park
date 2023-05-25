@@ -1,0 +1,66 @@
+.background {
+    background-color: purple;
+    padding: 2px;
+    position: relative;
+    --notchSize: 20px;
+    clip-path: polygon(
+      0% var(--notchSize),
+      var(--notchSize) 0%,
+      100% 0%,
+      100% 0%,
+      100% calc(100% - var(--notchSize)),
+      calc(100% - var(--notchSize)) 100%,
+      0% 100%,
+      0% 100%
+    );
+  }
+  
+  .overlay {
+    background-color: white;
+    color: purple;
+    position: relative;
+    padding: 15px 90px;
+    --notchSize: 19px;
+    clip-path: polygon(
+      0% var(--notchSize),
+      var(--notchSize) 0%,
+      100% 0%,
+      100% 0%,
+      100% calc(100% - var(--notchSize)),
+      calc(100% - var(--notchSize)) 100%,
+      0% 100%,
+      0% 100%
+    );
+  }
+  
+  .text {
+    position: relative;
+    z-index: 3;
+    transition: all .4s ease-in-out;
+  }
+  
+  .color {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    height: 100%;
+    width: 0%;
+    transition: all .3s ease-in-out;
+    background-color: purple;
+    opacity: 0;
+  }
+  
+  .background:hover {
+    .color {
+      background-color: purple;
+      width: 100%;
+      opacity: 1;
+    }
+    
+    .text {
+      color: white;
+    }
+  }
+  

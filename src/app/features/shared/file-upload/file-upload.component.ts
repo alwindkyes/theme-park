@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { elementAt } from 'rxjs';
 
 @Component({
@@ -10,6 +10,8 @@ export class FileUploadComponent {
   uploadedFiles: any = [];
   openImageDialog: boolean = false;
   filePreview: string = '';
+  @Input() files: any[] = [];
+  @Output() selectedFiles: any[] = [];
 
   ngOnInit(): void {
   }

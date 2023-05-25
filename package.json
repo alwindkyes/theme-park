@@ -25,6 +25,7 @@
     "@angular/router": "^14.2.0",
     "@angular/service-worker": "^14.2.0",
     "@fullcalendar/core": "^6.1.5",
+    "chart.js": "^2.9.4",
     "moment": "^2.29.4",
     "ngx-editor": "^15.2.0",
     "rxjs": "~7.5.0",
