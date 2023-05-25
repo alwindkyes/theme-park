@@ -3,11 +3,44 @@
         <h2 class="text-2xl text-emerald-500 font-bold">Stand & Deliver</h2>
     </div>
 </header>
-<section class="my-5">
-    <div class="container mx-auto flex flex-col gap-y-5">
-        <app-button size="" shade=""></app-button>
-        <app-button size="Small" shade="Dark"></app-button>
-        <app-button size="Medium" shade="Light"></app-button>
-        <app-button size="Large" shade="White"></app-button>
+<section>
+    <div class="container mx-auto my-10">
+        <!-- <div class="flex flex-col gap-y-5">
+            <app-button size="" shade="" buttonName="Default"></app-button>
+            <app-button size="Small" shade="Dark" buttonName="Small Button"></app-button>
+            <app-button size="Medium" shade="Light" buttonName="Medium Button"></app-button>
+            <app-button size="Large" shade="White" buttonName="Large Button"></app-button>
+        </div>
+        <section class="my-10">
+            <app-rating [value]="starCount"></app-rating>
+        </section>
+        <section class="my-10">
+            <app-button (click)="addDynamicComponents()" size="Small" shade="Light" buttonName="Add Dynamic Components"
+                animation="Circle"></app-button>
+            <ng-template #container></ng-template>
+        </section>
+        <section class="my-10">
+            <app-image [imageSrc]="imageSrc" [height]="height" [width]="width" [radius]="radius"
+                [roundingSide]="roundingSide" [roundingCorners]="roundingCorners"></app-image>
+        </section>
+        <section class="my-10">
+            <app-optimized-image></app-optimized-image>
+        </section>
+        <section class="my-10">
+            <app-button class="block my-5" size="Small" shade="Dark" buttonName="Open Regular" animation="Fade"
+                (click)="openDialogBox('regular')"></app-button>
+            <app-button size="Small" shade="Dark" buttonName="Open Video" animation="Fade"
+                (click)="openDialogBox('video')"></app-button>
+            <app-dialog (closeDialog)="closeDialogBox($event)" [closeButton]="closeButton" [openDialog]="regularDialog" [youtubeUrl]="youtubeUrl"
+                type="regular"></app-dialog>
+            <app-dialog (closeDialog)="closeDialogBox($event)" [openDialog]="videoDialog" [youtubeUrl]="youtubeUrl"
+                type="video"></app-dialog>
+        </section>-->
+        <!-- <section class="my-10">
+            <app-card></app-card>
+        </section>  -->
+        <section class="mt-10">
+            <app-login></app-login>
+        </section>
     </div>
 </section>

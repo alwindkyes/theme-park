@@ -9,6 +9,7 @@ export class ButtonComponent {
 
   @Input() size: string = '';
   @Input() shade: string = '';
-  @Input() animation: string = '';
+  @Input() animation: string = 'Circle';
+  @Input() buttonName: string = '';
 
 }

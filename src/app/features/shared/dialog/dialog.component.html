@@ -1,0 +1,29 @@
+<section *ngIf="openDialog" class="fixed top-0 right-0 z-20">
+    <div class="bg-slate-800 bg-opacity-40 h-screen w-screen flex justify-center items-center">
+        <div *ngIf="type === 'regular'" class="bg-slate-50 w-1/3 shadow-full rounded-md animate-popup relative">
+            <svg *ngIf="closeButton === 'x'" (click)="closeDialogBox()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke-width="1.5" stroke="currentColor" class="w-6 h-6 absolute top-5 right-5 cursor-pointer">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            <div class="px-10 pt-14">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam sint doloremque placeat corporis
+                    commodi
+                    numquam saepe nostrum iusto nulla cum, quisquam accusantium quidem voluptates hic veritatis sed ipsa
+                    officia deserunt?</p>
+            </div>
+            <div class="px-10 py-5 text-right">
+                <button *ngIf="closeButton === 'text'" class="hover:bg-slate-200 py-2 px-5 rounded" (click)="closeDialogBox()">Cancel</button>
+                <button class="hover:bg-slate-200 py-2 px-5 rounded" (click)="closeDialogBox()">Delete</button>
+            </div>
+        </div>
+        <div *ngIf="type === 'video'" class="w-[70%] h-screen p-20">
+            <svg (click)="closeDialogBox()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-slate-50 absolute top-5 right-5 cursor-pointer">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            <iframe width="100%" height="100%" [src]="safeYoutubeUrl  " title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</section>

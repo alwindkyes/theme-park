@@ -1,0 +1,32 @@
+<div>
+    <div class="flex justify-between">
+        <div class="w-1/2 h-[400px] overflow-auto">
+            <div *ngFor="let title of titles; let i = index">
+                {{ i + 1 }} {{ title }}
+            </div>
+        </div>
+        <div>
+            <select class="focus:outline-none rounded-sm px-2 py-1 text-emerald-500 bg-emerald-50"
+                (change)="onSelectPages($event)" #selectItem>
+                <option hidden>No of Items</option>
+                <option *ngFor="let item of noOfItems" [value]="item">{{ item }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="inline-block ml-3" *ngFor="let item of pages;let i = index">
+        <app-button class="block mt-5" (click)="newPage(item)" size="Medium" shade=""
+            buttonName="{{ i + 1 }}"></app-button>
+    </div>
+</div>
+
+<!-- <div class="flex">
+    <div class="w-1/5">
+        <div class="bg-violet-300" [@backdrop]="openCloseTrigger">
+            <p class="text-end">{{openCloseTrigger}}</p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel quasi aliquid voluptatem libero tenetur alias sint at quam obcaecati dicta. Praesentium consequatur fugit soluta quam odio, nesciunt eos culpa dolor!
+    <app-button (click)="hideAndSeek()" size="Medium" shade="Light" buttonName="Next"></app-button>
+
+        </div>
+    </div>
+    <app-button (click)="hideAndSeek()" size="Medium" shade="Light" buttonName="Next"></app-button>
+</div> -->

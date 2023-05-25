@@ -6,9 +6,6 @@ import { ChatService } from 'src/app/service/chat.service';
   selector: 'app-person-one',
   templateUrl: './person-one.component.html',
   styleUrls: ['./person-one.component.scss'],
-  host: {
-    '(document:click)': 'otherClick($event)',
-  },
 })
 export class PersonOneComponent implements OnInit {
   personOne: FormControl = new FormControl();

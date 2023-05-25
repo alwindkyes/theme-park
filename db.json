@@ -1,12 +1,6 @@
 {
   "wrestlers": [
     {
-      "rank": 1,
-      "wrestler_name": "Bron Breaker",
-      "brand": null,
-      "id": 1
-    },
-    {
       "rank": 2,
       "wrestler_name": "Axiom",
       "brand": null,
@@ -47,6 +41,24 @@
       "wrestler_name": "Joe Gacy",
       "brand": null,
       "id": 8
+    },
+    {
+      "rank": 9,
+      "wrestler_name": "Nathan Frazer",
+      "brand": null,
+      "id": 9
+    },
+    {
+      "rank": 10,
+      "wrestler_name": "Tony D'Angelo",
+      "brand": null,
+      "id": 10
+    },
+    {
+      "rank": 11,
+      "wrestler_name": "Dijak",
+      "brand": null,
+      "id": 11
     }
   ],
   "chat": [
@@ -89,6 +101,11 @@
       "chat": "Apollo Crews",
       "person": 1,
       "id": 8
+    },
+    {
+      "chat": "Joey Janela",
+      "person": 1,
+      "id": 9
     }
   ]
 }

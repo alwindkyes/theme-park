@@ -22,7 +22,8 @@ const routes: Routes = [
       },
       {
         path: 'test',
-        component: TestComponent
+        component: TestComponent,
+        title: 'TEST'
       },
       {
         path: 'create-question',

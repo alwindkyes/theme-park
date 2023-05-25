@@ -31,13 +31,14 @@
     {
       "name": "wrestlers",
       "urls": [
-        "https://jsonplaceholder.typicode.com/wrestlers"
+        "http://localhost:3000/wrestlers",
+        "https://wonderlaapi.hakunamatata.io/crud/park/m_park?jsonapi=true&filters={'field':'is_enabled','operator':'equal','value':'false}&fields[m_park]=park_code,park_name,address,max_crowd,is_enabled,icon_url"
       ],
       "cacheConfig": {
         "maxSize": 5,
         "maxAge": "6h",
         "timeout": "10s",
-        "strategy": "freshness"
+        "strategy": "performance"
       }
     }
   ]

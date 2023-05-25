@@ -1,4 +1,4 @@
-<section [ngStyle]="{ 'opacity': deletePopup || createNew ? '0.2': '1' }">
+<section [ngClass]="deletePopup || createNew ? 'opacity-10': '' ">
     <section>
         <p>{{ detect() }}</p>
         <div class="container mx-auto">
@@ -59,49 +59,64 @@
         </table>
     </section>
 </section>
-<div *ngIf="toasterMessage" class="flex shadow-lg gap-x-5 fixed top-5 right-36 bg-teal-500 py-2 px-5">
-    <h2 class="text-white text-lg">{{ toasterMessage }}</h2>
-    <button (click)="closeToaster()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-            stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-    </button>
-</div>
-<div *ngIf="deletePopup" class="fixed top-1/3 left-1/3 shadow-2xl bg-white border border-teal-500 py-5 px-10">
-    <h2 class="text-teal-500 text-2xl">Are you sure you want to Delete ?</h2>
-    <div class="flex justify-center gap-x-5 mt-5">
-        <button class="border border-teal-500 py-2 px-5 hover:text-white hover:bg-teal-500"
-            (click)="cancelDelete()">Cancel</button>
-        <button class="border border-teal-500 py-2 px-5 hover:text-white hover:bg-teal-500"
-            (click)="deleteWrestlersList()">Delete</button>
-    </div>
-</div>
-<div *ngIf="createNew" id="anime"
-    class="flex flex-col open-popup gap-y-10 gap-x-5 fixed top-1/3 left-1/3 shadow-2xl bg-white border border-teal-500 py-5 px-10"
-    [formGroup]="wrestlersForm">
-    <div>
-        <div class="flex flex-col">
-            <label for="">Rank</label>
-            <input type="number" class="text-gray-600 focus:outline-none border border-teal-500 p-2 mt-2"
-                formControlName="rank">
-        </div>
-        <div class="flex flex-col">
-            <label for="" class="mt-2">Name</label>
-            <input type="text" class="text-gray-600 focus:outline-none border border-teal-500 p-2 mt-2"
-                formControlName="wrestler_name">
-        </div>
-        <div class="flex flex-col">
-            <label for="" class="mt-2">Brand</label>
-            <input type="file" class="mt-2" formControlName="brand">
+<div *ngIf="toasterArray.length">
+    <div class="fixed {{top}} right-10 animate-pos" *ngFor="let a of toasterArray; let i = index">
+        <div class="flex mb-5 shadow-drop gap-x-5 bg-teal-500 py-2 px-5 ">
+            <h2 class="text-white text-lg">{{ toasterMessage }}</h2>
+            <button (click)="closeToaster(i)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </button>
         </div>
     </div>
-    <div class="flex justify-center">
-        <button *ngIf="createNew"
-            class="bg-white mr-5 self-end text-teal-500 border border-teal-500 hover:text-white hover:bg-teal-500 px-5 py-2 duration-200"
-            (click)="cancelCreateNew()">Cancel</button>
-        <button *ngIf="createNew"
-            class="bg-white self-end text-teal-500 border border-teal-500 hover:text-white hover:bg-teal-500 px-5 py-2 duration-200"
-            (click)="saveOrEditWrestlersList()">{{ saveOrEdit }}</button>
+</div>
+
+<div *ngIf="deletePopup" class="fixed top-0 left-0">
+    <div class="h-[100vh] w-[100vw] flex items-center justify-center">
+        <div class="shadow-2xl w-1/3 animate-popup bg-white border border-teal-500 py-5 px-10">
+            <h2 class="text-teal-500 text-center text-2xl">Are you sure you want to Delete ?</h2>
+            <div class="flex justify-center gap-x-5 mt-5">
+                <button class="border border-teal-500 py-2 px-5 hover:text-white hover:bg-teal-500"
+                    (click)="cancelDelete()">Cancel</button>
+                <button class="border border-teal-500 py-2 px-5 hover:text-white hover:bg-teal-500"
+                    (click)="deleteWrestlersList()">Delete</button>
+            </div>
+        </div>
     </div>
 </div>
+<div *ngIf="createNew" class="fixed top-0 left-0">
+    <div id="anime" class="h-[100vh] w-[100vw] flex items-center justify-center" [formGroup]="wrestlersForm">
+        <div
+            class="flex flex-col w-1/4 animate-popup gap-y-10 gap-x-5 shadow-2xl bg-white border border-teal-500 py-5 px-10">
+            <div> {{ top }}
+                <div class="flex flex-col">
+                    <label for="">Rank</label>
+                    <input type="number" class="text-gray-600 focus:outline-none border border-teal-500 p-2 mt-2"
+                        formControlName="rank">
+                </div>
+                <div class="flex flex-col">
+                    <label for="" class="mt-2">Name</label>
+                    <input type="text" class="text-gray-600 focus:outline-none border border-teal-500 p-2 mt-2"
+                        formControlName="wrestler_name">
+                </div>
+                <div class="flex flex-col">
+                    <label for="" class="mt-2">Brand</label>
+                    <input type="file" class="mt-2" formControlName="brand">
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <button *ngIf="createNew"
+                    class="bg-white mr-5 self-end text-teal-500 border border-teal-500 hover:text-white hover:bg-teal-500 px-5 py-2 duration-200"
+                    (click)="cancelCreateNew()">Cancel</button>
+                <button *ngIf="createNew"
+                    class="bg-white self-end text-teal-500 border border-teal-500 hover:text-white hover:bg-teal-500 px-5 py-2 duration-200"
+                    (click)="saveOrEditWrestlersList()">{{ saveOrEdit }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    <div *ngFor="let park of parks">{{ park }}</div>
+</section>
